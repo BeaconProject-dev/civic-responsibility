@@ -39,7 +39,7 @@
 
 			const requestData = { duties: dutiesData };
 
-			const response = await fetch('https://civic-responsibility.onrender.com/predict', {
+			const response = await fetch('https://civic-responsibility-zif0.onrender.com/predict', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
