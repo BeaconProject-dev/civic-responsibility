@@ -66,8 +66,8 @@
 <div class="quiz-container">
 	<div class="quiz-content">
 		<div class="quiz-header">
-			<h2>What's your civic profile?</h2>
-			<p>
+			<h2>Your civic profile?</h2>
+			<!-- <p>
 				Take the quiz below to find out. For each behavior, indicate whether or not you consider it
 				a <span class="definition-text"
 					>civic responsibility
@@ -81,7 +81,14 @@
 				<span class="definition-text"
 					>Behaviors people are expected to perform as upstanding members of our national community.</span
 				>
-			</div>
+			</div> -->
+
+			<p>
+				Take the quiz below to find out. For each behavior, indicate whether or not <b>you</b> yourself
+				consider it a civic responsibility—an action you believe people ought to perform as part of
+				our national community. You may find some of these questions difficult to answer. That’s OK.
+				In those cases, pick the answer that comes closest to your view.
+			</p>
 		</div>
 
 		<div class="quiz-container">
@@ -141,7 +148,6 @@
 		margin: 0 auto;
 		display: flex;
 		flex-direction: column;
-	
 	}
 
 	.quiz-header {
@@ -166,7 +172,7 @@
 
 		p {
 			margin: 0 0 1.5rem 0;
-			font-size: 1.5rem;
+			font-size: 1.2rem;
 			opacity: 0.95;
 			line-height: 1.5;
 			text-align: center;

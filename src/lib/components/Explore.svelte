@@ -98,22 +98,7 @@
 		</div>
 
 		<div class="explore-columns">
-			<div class="explore-column dashboard-column">
-				<div class="column-content">
-					<h3>Data Dashboard</h3>
-					<p>
-						Learn how Americans' beliefs differ by political affiliation, gender, location, and
-						more.
-					</p>
-					<button
-						data-button="explore"
-						bind:this={exploreButton}
-						onclick={() => goto(base + '/dashboard?fromExplore=true')}
-					>
-						Explore the data
-					</button>
-				</div>
-			</div>
+			
 
 			<div class="explore-column quiz-column">
 				<div class="column-content">
@@ -125,6 +110,23 @@
 						onclick={() => goto(base + '/quiz?fromExplore=true')}
 					>
 						Start the quiz
+					</button>
+				</div>
+			</div>
+
+			<div class="explore-column dashboard-column">
+				<div class="column-content">
+					<h3>Interactive Dashboard</h3>
+					<p>
+						Learn how Americans' beliefs differ by political affiliation, gender, location, and
+						more.
+					</p>
+					<button
+						data-button="explore"
+						bind:this={exploreButton}
+						onclick={() => goto(base + '/dashboard?fromExplore=true')}
+					>
+						Explore the data
 					</button>
 				</div>
 			</div>

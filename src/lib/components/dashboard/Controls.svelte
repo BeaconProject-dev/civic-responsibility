@@ -247,7 +247,10 @@
 							<div class="option-buttons">
 								{#each stateViewOptions as option}
 									<button
-										onclick={() => (selectedStateView = option.value)}
+										onclick={() => {
+											selectedStateView = option.value;
+											closeModal();
+										}}
 										class="option-button {selectedStateView === option.value ? 'selected' : ''}"
 									>
 										{option.label}

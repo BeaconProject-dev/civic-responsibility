@@ -154,10 +154,10 @@
 {#if $userResponse.submitted}
 	<GSAPScroller section="outro" />
 
+	<EmailSignupSection />
 	<Explore />
 
 	{#if showEndItems}
-		<EmailSignupSection />
 		<Footer />
 	{/if}
 {/if}

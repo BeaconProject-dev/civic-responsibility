@@ -767,7 +767,6 @@
 		// Pinned mode styles
 		&.pinned {
 			height: calc(100svh - var(--header-height, 80px));
-			margin-top: var(--header-height, 80px);
 			display: flex;
 			flex-direction: row;
 

@@ -3,6 +3,7 @@
 	import { House, Landmark, Cake } from '@lucide/svelte';
 	import SocialShare from './SocialShare.svelte';
 	import { isMobile } from '$lib/stores/responsive.js';
+	import  EmailSignupSection from '$lib/components/EmailSignupSection.svelte';
 
 	let { results, submittedUserYesCount } = $props();
 
@@ -15,8 +16,6 @@
 		})
 	);
 
-
-
 	// Calculate civic profile based on submittedUserYesCount
 	const civicProfile = $derived.by(() => {
 		if (submittedUserYesCount <= 16) return 'Civic Minimalist';
@@ -26,6 +25,17 @@
 	});
 
 	const iconSize = $isMobile ? 24 : 30;
+
+	const descriptions = {
+		'Civic Minimalist':
+			'<b>Civic Minimalists</b> have a go-it-alone attitude toward civic life. They view few behaviors as civic responsibilities, usually concentrating only on the “bare essentials” such as voting and obeying the law. When it comes to contributing to the national community, Civic Minimalists give little and expect little in return.',
+		'Civic Pragmatist':
+			'<b>Civic Pragmatists</b> approach civic life with a practical mindset. They recognize a modest set of civic responsibilities and focus on the ones that feel clear, reasonable, and grounded in everyday life. They’re ready to do their part, but they don’t think good citizenship requires taking on an overly long list of duties.',
+		'Civic Believer':
+			'<b>Civic Believers</b>  take a “show up in more than one way” view of citizenship. They think that being part of a community calls for a wider mix of responsibilities and are generally on board with doing their share. Without overcommitting, they believe good citizenship means stepping in, not just once in a while, but in a host of different ways.',
+		'Civic Champion':
+			'<b>Civic Champions</b> have an “all hands on deck” view of civic life. To them, citizenship comes with a broad set of responsibilities, and they embrace the idea that communities work best when people show up broadly and consistently. They see civic duty as far-reaching, something woven into many corners of everyday life.'
+	};
 </script>
 
 <div class="results-container">
@@ -37,90 +47,87 @@
 	<div class="results-table">
 		<div class="results-row summary">
 			<p>
-				You selected <span class="highlight">{submittedUserYesCount}</span>
-				responsibilities. The average American selected
-				<span class="highlight">20</span>
-				responsibilities.
+				{@html descriptions[civicProfile]}
 			</p>
 		</div>
 
-		<div class="results-subhead">
-			Based on your responses, you align most closely with...
-		</div>
+		<!-- <div class="results-subhead">Based on your responses, you align most closely with...</div>
 
-	{#if results.summary}
-		{@const ideology = results.summary.find(item => item.group_var === 'ideology_binary')}
-		{#if ideology}
-			{@const ideologyPercent = ideology.percent_fit.toFixed(0)}
-			<div class="results-row flex">
-				<div class="icon-container"><Landmark color="#fff" size={iconSize} /></div>
-				<div class="content-container">
-					<p>
-						<span class="highlight black">
-							{ideology.predicted_group} Americans
-						</span>
+		{#if results.summary}
+			{@const ideology = results.summary.find((item) => item.group_var === 'ideology_binary')}
+			{#if ideology}
+				{@const ideologyPercent = ideology.percent_fit.toFixed(0)}
+				<div class="results-row flex">
+					<div class="icon-container"><Landmark color="#fff" size={iconSize} /></div>
+					<div class="content-container">
+						<p>
+							<span class="highlight black">
+								{ideology.predicted_group} Americans
+							</span>
 
-						<span class="highlight blue">({ideologyPercent}% match)</span>
-					</p>
-					<div class="progress-bar">
-						<div class="progress-fill" style="width: {ideologyPercent}%"></div>
+							<span class="highlight blue">({ideologyPercent}% match)</span>
+						</p>
+						<div class="progress-bar">
+							<div class="progress-fill" style="width: {ideologyPercent}%"></div>
+						</div>
 					</div>
 				</div>
-			</div>
+			{/if}
 		{/if}
-	{/if}
 
-	{#if results.summary}
-		{@const urban = results.summary.find(item => item.group_var === 'urban_binary')}
-		{#if urban}
-			{@const urbanPercent = urban.percent_fit.toFixed(0)}
-			<div class="results-row flex">
-				<div class="icon-container"><House color="#fff" size={iconSize} /></div>
-				<div class="content-container">
-					<p>
-						<span class="highlight black">
-							{urban.predicted_group} Americans
-						</span>
+		{#if results.summary}
+			{@const urban = results.summary.find((item) => item.group_var === 'urban_binary')}
+			{#if urban}
+				{@const urbanPercent = urban.percent_fit.toFixed(0)}
+				<div class="results-row flex">
+					<div class="icon-container"><House color="#fff" size={iconSize} /></div>
+					<div class="content-container">
+						<p>
+							<span class="highlight black">
+								{urban.predicted_group} Americans
+							</span>
 
-						<span class="highlight blue">({urbanPercent}% match)</span>
-					</p>
-					<div class="progress-bar">
-						<div class="progress-fill" style="width: {urbanPercent}%"></div>
+							<span class="highlight blue">({urbanPercent}% match)</span>
+						</p>
+						<div class="progress-bar">
+							<div class="progress-fill" style="width: {urbanPercent}%"></div>
+						</div>
 					</div>
 				</div>
-			</div>
+			{/if}
 		{/if}
-	{/if}
 
-	{#if results.summary}
-		{@const age = results.summary.find(item => item.group_var === 'age_binary')}
-		{#if age}
-			{@const agePercent = age.percent_fit.toFixed(0)}
-			<div class="results-row flex">
-				<div class="icon-container"><Cake color="#fff" size={iconSize} /></div>
-				<div class="content-container">
-					<p>
-						<span class="highlight black">
-							{age.predicted_group === 'old' ? 'older (50+)' : 'younger (<50)'} Americans
-						</span>
+		{#if results.summary}
+			{@const age = results.summary.find((item) => item.group_var === 'age_binary')}
+			{#if age}
+				{@const agePercent = age.percent_fit.toFixed(0)}
+				<div class="results-row flex">
+					<div class="icon-container"><Cake color="#fff" size={iconSize} /></div>
+					<div class="content-container">
+						<p>
+							<span class="highlight black">
+								{age.predicted_group === 'old' ? 'older (50+)' : 'younger (<50)'} Americans
+							</span>
 
-						<span class="highlight blue">({agePercent}% match)</span>
-					</p>
-					<div class="progress-bar">
-						<div class="progress-fill" style="width: {agePercent}%"></div>
+							<span class="highlight blue">({agePercent}% match)</span>
+						</p>
+						<div class="progress-bar">
+							<div class="progress-fill" style="width: {agePercent}%"></div>
+						</div>
 					</div>
 				</div>
-			</div>
-		{/if}
-	{/if}
+			{/if}
+		{/if} -->
 	</div>
 
-	<SocialShare {results} />
+	<SocialShare {results} {civicProfile} />
+
+	<EmailSignupSection animated={false} />
 </div>
 
 <style lang="scss">
 	@import '../../styles/mixins.scss';
-	
+
 	.results-container {
 		text-align: center;
 		margin: 0 auto;
@@ -128,8 +135,6 @@
 		border-radius: 12px;
 		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 		overflow: hidden;
-
-
 
 		// Mobile responsive adjustments
 		@include mq('mobile', 'max') {
@@ -179,9 +184,7 @@
 	}
 
 	.results-table {
- 
 		overflow: hidden; /* Ensures rounded corners apply to inner borders */
-
 	}
 
 	.results-row {
@@ -198,6 +201,11 @@
 		&.summary {
 			text-align: center;
 			margin: 1.5rem 0;
+
+			p {
+				font-size: 1.2rem;
+				line-height: 1.4;
+			}
 
 			// Mobile responsive adjustments
 			@include mq('mobile', 'max') {

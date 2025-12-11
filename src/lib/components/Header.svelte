@@ -35,7 +35,9 @@
 	}
 
 	// When on main page and returning from a route (via fromExplore param)
-	let fromExplore = $derived(mode === 'main' && browser && $page.url.search.includes('fromExplore=true'));
+	let fromExplore = $derived(
+		mode === 'main' && browser && $page.url.search.includes('fromExplore=true')
+	);
 
 	function urlClean() {
 		const url = new URL(window.location.href);
@@ -57,17 +59,12 @@
 	});
 </script>
 
-<header
-	class="main-header {mode}"
-	aria-label="Site navigation"
-	bind:clientHeight={headerHeight}
-	class:bg
->
+<header class="main-header {mode} bg" aria-label="Site navigation" bind:clientHeight={headerHeight}>
 	<div class="header-left">
-		<Lockup interactive={mode === 'main'} size={$isMobile ? 'medium' : 'large'} />
+		<Lockup interactive={true} size={$isMobile ? 'medium' : 'large'} justBeacon={$isMobile} />
 	</div>
 
-		<div class="header-right">
+	<div class="header-right">
 		{#if mode === 'route'}
 			<button class="nav-button back-button" onclick={handleBackClick}>
 				<Home size={20} />
@@ -75,10 +72,11 @@
 			</button>
 
 			{#if !$page.url.pathname.includes('/dashboard')}
-				{@const param = browser && $page.url.search.includes('fromExplore=true') ? '?fromExplore=true' : ''}
+				{@const param =
+					browser && $page.url.search.includes('fromExplore=true') ? '?fromExplore=true' : ''}
 				<a href={base + '/dashboard' + param} class="nav-button dashboard-button">
 					{#if $isMobile}
-						<span>Dashboard</span>
+						<span>Interactive Dashboard</span>
 					{:else}
 						<ChartBar size={16} />
 						<span class="full-text">View the data dashboard</span>
@@ -87,10 +85,11 @@
 				</a>
 			{/if}
 			{#if !$page.url.pathname.includes('/quiz')}
-				{@const param = browser && $page.url.search.includes('fromExplore=true') ? '?fromExplore=true' : ''}
+				{@const param =
+					browser && $page.url.search.includes('fromExplore=true') ? '?fromExplore=true' : ''}
 				<a href={base + '/quiz' + param} class="nav-button quiz-button">
 					{#if $isMobile}
-						<span>Quiz</span>
+						<span>Take the quiz</span>
 					{:else}
 						<UserPen size={16} />
 						<span class="full-text">What's your Civic Profile? Take our interactive quiz.</span>
@@ -102,7 +101,7 @@
 			{#if !$page.url.pathname.includes('/dashboard')}
 				<a href={base + '/dashboard'} class="nav-button dashboard-button">
 					{#if $isMobile}
-						<span>Dashboard</span>
+						<span>Interactive Dashboard</span>
 					{:else}
 						<ChartBar size={16} />
 						<span class="full-text">View the data dashboard</span>
@@ -113,11 +112,11 @@
 			{#if !$page.url.pathname.includes('/quiz')}
 				<a href={base + '/quiz'} class="nav-button quiz-button">
 					{#if $isMobile}
-						<span>Quiz</span>
+						<span>Take the quiz</span>
 					{:else}
 						<UserPen size={16} />
 						<span class="full-text">What's your Civic Profile? Take our interactive quiz.</span>
-						<span class="short-text">Take quiz</span>
+						<span class="short-text">Take the quiz</span>
 					{/if}
 				</a>
 			{/if}
@@ -129,7 +128,7 @@
 	@import '../styles/mixins.scss';
 
 	.main-header {
-		position: absolute;
+		position: sticky;
 		top: 0;
 		left: 0;
 		right: 0;
@@ -159,6 +158,10 @@
 		@include mq('small-mobile', 'max') {
 			height: 50px;
 			padding: $spacing-xs $spacing-sm;
+
+			@include mq('mobile', 'max') {
+				height: auto;
+			}
 		}
 
 		.header-left {
@@ -201,6 +204,7 @@
 				// Mobile responsive adjustments
 				@include mq('mobile', 'max') {
 					padding: 0.4rem 0.8rem;
+					padding: 0.4rem;
 					font-size: 0.8rem;
 					min-height: 2rem;
 				}

@@ -2,7 +2,7 @@
 	import { X, Facebook, Linkedin, Copy } from '@lucide/svelte';
 	import { browser } from '$app/environment';
 
-	let { results } = $props();
+	let { results, civicProfile } = $props();
 
 	// Toast notification state
 	let showToast = $state(false);
@@ -10,37 +10,7 @@
 
 	// Generate the social media text based on results
 	const socialText = $derived.by(() => {
-		let text = 'My civic profile is closest to ';
-
-		// Add age prediction
-		if (results.summary) {
-			const age = results.summary.find((item) => item.group_var === 'age_binary');
-			if (age) {
-				text += age.predicted_group === 'old' ? 'an older' : 'a younger';
-			}
-		}
-
-		text += ' ';
-
-		// Add urban/rural prediction
-		if (results.summary) {
-			const urban = results.summary.find((item) => item.group_var === 'urban_binary');
-			if (urban) {
-				text += urban.predicted_group.toLowerCase();
-			}
-		}
-
-		text += ' ';
-
-		// Add ideology prediction
-		if (results.summary) {
-			const ideology = results.summary.find((item) => item.group_var === 'ideology_binary');
-			if (ideology) {
-				text += ideology.predicted_group.toLowerCase();
-			}
-		}
-
-		text += ". What's yours? Find out at";
+		let text = `I took a quiz and got ${civicProfile}! Find out your Civic Profile at ${shareUrl}.`;
 
 		return text;
 	});
@@ -70,7 +40,7 @@
 	const copyToClipboard = async () => {
 		if (!browser) return;
 		try {
-			await navigator.clipboard.writeText(socialText + ' ' + shareUrl);
+			await navigator.clipboard.writeText(socialText);
 			showCopiedMessage();
 		} catch (err) {
 			console.error('Failed to copy text: ', err);
@@ -96,7 +66,7 @@
 
 <div class="social-share-container">
 	<!-- Copy Results Button Section -->
-	<div class="copy-section">
+	<!-- <div class="copy-section">
 		<button class="copy-results-button" onclick={copyToClipboard} aria-label="Copy my results">
 			<Copy size={20} />
 			Copy my results
@@ -104,12 +74,25 @@
 		{#if showToast}
 			<span class="copied-message">Copied!</span>
 		{/if}
-	</div>
+	</div> -->
 
 	<!-- Share Section -->
 	<div class="share-section">
-		<h4 class="share-title">Share</h4>
+		<h4 class="share-title">Share your results with your community!</h4>
+		<p>Copy and paste your results to post to social media or use a link below.</p>
 		<div class="social-icons">
+			<button
+				class="social-button copy"
+				onclick={copyToClipboard}
+				aria-label="Copy results"
+				title="SCopy results"
+			>
+				<Copy size={iconSize} />
+				{#if showToast}
+					<span class="copied-message">Copied!</span>
+				{/if}
+			</button>
+
 			<button class="social-button x" onclick={shareOnX} aria-label="Share on X" title="Share on X">
 				<svg
 					width="20"
@@ -144,9 +127,9 @@
 			</button>
 		</div>
 
-		<p class="share-instructions">
+		<!-- <p class="share-instructions">
 			<em>For Facebook and LinkedIn, copy your results then paste them in the popup window to share!</em>
-		</p>
+		</p> -->
 	</div>
 </div>
 
@@ -154,11 +137,13 @@
 	@import '../../styles/mixins.scss';
 
 	.social-share-container {
+		// border-top: 1px solid #dee2e6;
+		border-bottom: 1px solid #dee2e6;
 		text-align: center;
-		margin-top: 2rem;
+		// margin-top: 2rem;
 		padding: 1.5rem;
 		background-color: #f8f9fa;
-		border-radius: 12px;
+		// border-radius: 12px;
 
 		// Mobile responsive adjustments
 		@include mq('mobile', 'max') {
@@ -223,7 +208,7 @@
 		font-size: 1.1rem;
 		font-weight: 600;
 		color: #333;
-		margin: 0 0 1rem 0;
+		margin: 0 0 0.5rem 0;
 		text-transform: uppercase;
 		letter-spacing: 0.5px;
 
@@ -239,6 +224,7 @@
 		justify-content: center;
 		gap: 1rem;
 		margin-bottom: 1rem;
+		position: relative;
 
 		// Mobile responsive adjustments
 		@include mq('mobile', 'max') {
@@ -258,6 +244,7 @@
 		cursor: pointer;
 		transition: all 0.2s ease;
 		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+		position: relative;
 
 		// Mobile responsive adjustments
 		@include mq('mobile', 'max') {
@@ -274,13 +261,17 @@
 			transform: translateY(0);
 		}
 
+		&.copy {
+			background-color: var(--color-theme-blue);
+			color: white;
+			opacity: 0.8;
+			&:hover {
+				opacity: 1;
+			}
+		}
 		&.x {
 			background-color: #000;
 			color: white;
-
-			&:hover {
-				background-color: #000;
-			}
 		}
 
 		&.facebook {

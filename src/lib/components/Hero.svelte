@@ -50,7 +50,7 @@
 	:global {
 		.hero-section {
 			position: relative;
-			height: 100vh;
+			height: calc(100vh - var(--header-height, 80px));
 			overflow: hidden;
 			display: flex;
 			align-items: center;

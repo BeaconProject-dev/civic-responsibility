@@ -127,7 +127,7 @@
 		<h2>Learn more about our effort to rethink responsibility in America.</h2>
 		<p>
 			We are on a mission to build a country that recognizes each American’s right and
-			responsibility to improve their own lives and the lives of others. Enter your email below to
+			responsibility to improve their own and others’ lives. Enter your email below to
 			subscribe to our newsletter and receive monthly updates on our work.
 		</p>
 
