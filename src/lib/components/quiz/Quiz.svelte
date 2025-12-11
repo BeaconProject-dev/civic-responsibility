@@ -5,6 +5,8 @@
 	import Form from './Form.svelte';
 	import Submit from './Submit.svelte';
 	import Results from './Results.svelte';
+	import Modal from '../Modal.svelte';
+	import EmailSignupSection from '../EmailSignupSection.svelte';
 	import { Info } from '@lucide/svelte';
 
 	import tippy from 'tippy.js';
@@ -17,6 +19,8 @@
 	let responses = $state({});
 	let submittedUserYesCount = $state(0);
 	let infoIcon = $state(null);
+	let showEmailModal = $state(false);
+	let hasShownModalThisSession = $state(false);
 
 	const definition =
 		'<b>Civic responsibilities:</b> Behaviors people are expected to perform as upstanding members of our national community.';
@@ -25,6 +29,12 @@
 		if (newResults) {
 			results = newResults;
 			submittedUserYesCount = newResults.userYesCount || 0;
+
+			// Show email modal on first submit of this session
+			if (!hasShownModalThisSession) {
+				showEmailModal = true;
+				hasShownModalThisSession = true;
+			}
 		}
 	}
 
@@ -125,6 +135,10 @@
 		{/if}
 	</div>
 </div>
+
+<Modal bind:open={showEmailModal}>
+	<EmailSignupSection animated={false} onEmailSubmitted={() => showEmailModal = false} />
+</Modal>
 
 <style lang="scss">
 	@import '../../styles/mixins.scss';

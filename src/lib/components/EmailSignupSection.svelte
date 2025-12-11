@@ -4,7 +4,7 @@
 	import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 	// ===== Props =====
-	let { animated = true } = $props();
+	let { animated = true, onEmailSubmitted } = $props();
 
 	// ===== CONFIG =====
 	// Paste your Apps Script Web App URL (ends with /exec)
@@ -87,6 +87,12 @@
 			// Bot likely filled the hidden field—silently succeed
 			showSuccessMessage();
 			event.target.reset();
+			// Call callback for bots too (close modal)
+			if (onEmailSubmitted) {
+				setTimeout(() => {
+					onEmailSubmitted();
+				}, 500);
+			}
 			return;
 		}
 
@@ -113,6 +119,13 @@
 			if (json?.ok) {
 				showSuccessMessage();
 				event.target.reset();
+				// Call callback after showing success message
+				if (onEmailSubmitted) {
+					// Delay to allow success message to be seen briefly
+					setTimeout(() => {
+						onEmailSubmitted();
+					}, 500);
+				}
 			}
 		} catch (err) {
 			// Silently handle errors for better UX
@@ -346,11 +359,11 @@
 	// Responsive design
 	@include mq('mobile', 'max') {
 		.email-signup-section {
-			padding: 5rem 1.5rem;
+			padding: 2rem 1.5rem;
 
 			.email-signup-container {
 				h2 {
-					font-size: 2rem;
+					font-size: 1.6rem;
 					margin-bottom: 1.5rem;
 					line-height: 1.2;
 				}
@@ -358,10 +371,12 @@
 				p {
 					font-size: inherit;
 					line-height: inherit;
+					line-height: 1.4;
+					margin-bottom: 1.7rem;
 				}
 				.signup-form {
 					flex-direction: column;
-					gap: 1rem;
+					gap: 0.5rem;
 
 					.email-input {
 						text-align: center;
