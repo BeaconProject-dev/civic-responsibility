@@ -75,36 +75,12 @@
 
 <div class="quiz-container">
 	<div class="quiz-content">
-		<div class="quiz-header">
-			<h2>Your civic profile?</h2>
-			<!-- <p>
-				Take the quiz below to find out. For each behavior, indicate whether or not you consider it
-				a <span class="definition-text"
-					>civic responsibility
-					<span class="info-icon" bind:this={infoIcon}>
-						<Info size={16} />
-					</span>
-				</span>.
-			</p>
-			<div class="definition-container">
-				<strong>civic responsibilities</strong>
-				<span class="definition-text"
-					>Behaviors people are expected to perform as upstanding members of our national community.</span
-				>
-			</div> -->
-
-			<p>
-				Take the quiz below to find out. For each behavior, indicate whether or not <b>you</b> yourself
-				consider it a civic responsibility—an action you believe people ought to perform as part of
-				our national community. You may find some of these questions difficult to answer. That’s OK.
-				In those cases, pick the answer that comes closest to your view.
-			</p>
-		</div>
+		{#if !results}{/if}
 
 		<div class="quiz-container">
 			{#if isLoading}
 				<div class="loading-container">
-					<div class="spinner"></div>
+					<div class="spinner" style="margin-top: 120px;"></div>
 					<p>Analyzing your civic profile...</p>
 				</div>
 			{:else if error}
@@ -119,6 +95,32 @@
 				{/if}
 
 				{#if !isLoading && !error}
+					<div class="quiz-header">
+						<h2>Your civic profile</h2>
+						<!-- <p>
+						Take the quiz below to find out. For each behavior, indicate whether or not you consider it
+						a <span class="definition-text"
+							>civic responsibility
+							<span class="info-icon" bind:this={infoIcon}>
+								<Info size={16} />
+							</span>
+						</span>.
+					</p>
+					<div class="definition-container">
+						<strong>civic responsibilities</strong>
+						<span class="definition-text"
+							>Behaviors people are expected to perform as upstanding members of our national community.</span
+						>
+					</div> -->
+
+						<p>
+							Take the quiz below to find out. For each behavior, indicate whether or not <b>you</b>
+							yourself consider it a civic responsibility—an action you believe people ought to perform
+							as part of our national community. You may find some of these questions difficult to answer.
+							That’s OK. In those cases, pick the answer that comes closest to your view.
+						</p>
+					</div>
+
 					<Form bind:responses {results} />
 				{/if}
 			{/if}
@@ -137,7 +139,7 @@
 </div>
 
 <Modal bind:open={showEmailModal}>
-	<EmailSignupSection animated={false} onEmailSubmitted={() => showEmailModal = false} />
+	<EmailSignupSection animated={false} onEmailSubmitted={() => (showEmailModal = false)} />
 </Modal>
 
 <style lang="scss">

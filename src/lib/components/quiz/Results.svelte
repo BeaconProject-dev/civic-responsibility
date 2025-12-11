@@ -51,7 +51,7 @@
 			</p>
 		</div>
 
-		<!-- <div class="results-subhead">Based on your responses, you align most closely with...</div>
+		<div class="results-subhead">Based on your responses, you align most closely with...</div>
 
 		{#if results.summary}
 			{@const ideology = results.summary.find((item) => item.group_var === 'ideology_binary')}
@@ -65,11 +65,11 @@
 								{ideology.predicted_group} Americans
 							</span>
 
-							<span class="highlight blue">({ideologyPercent}% match)</span>
+							<!-- <span class="highlight blue">({ideologyPercent}% match)</span> -->
 						</p>
-						<div class="progress-bar">
+						<!-- <div class="progress-bar">
 							<div class="progress-fill" style="width: {ideologyPercent}%"></div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			{/if}
@@ -87,11 +87,11 @@
 								{urban.predicted_group} Americans
 							</span>
 
-							<span class="highlight blue">({urbanPercent}% match)</span>
+							<!-- <span class="highlight blue">({urbanPercent}% match)</span> -->
 						</p>
-						<div class="progress-bar">
+						<!-- <div class="progress-bar">
 							<div class="progress-fill" style="width: {urbanPercent}%"></div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			{/if}
@@ -109,15 +109,15 @@
 								{age.predicted_group === 'old' ? 'older (50+)' : 'younger (<50)'} Americans
 							</span>
 
-							<span class="highlight blue">({agePercent}% match)</span>
+							<!-- <span class="highlight blue">({agePercent}% match)</span> -->
 						</p>
-						<div class="progress-bar">
+						<!-- <div class="progress-bar">
 							<div class="progress-fill" style="width: {agePercent}%"></div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			{/if}
-		{/if} -->
+		{/if}
 	</div>
 
 	<SocialShare {results} {civicProfile} />
@@ -129,8 +129,9 @@
 	@import '../../styles/mixins.scss';
 
 	.results-container {
+		
 		text-align: center;
-		margin: 0 auto;
+		margin: 120px auto 0;
 		background-color: #fff;
 		border-radius: 12px;
 		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -215,7 +216,8 @@
 
 		&.flex {
 			display: flex;
-			align-items: flex-start;
+			// align-items: flex-start;
+			align-items: center;
 			gap: 1rem;
 
 			// Mobile responsive adjustments
