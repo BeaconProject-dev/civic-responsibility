@@ -77,6 +77,39 @@
 		return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(str);
 	}
 
+	function submitToSubstack(email) {
+		// Create a hidden iframe to submit the form silently (no page navigation)
+		const iframe = document.createElement('iframe');
+		iframe.name = 'substack-submit-iframe';
+		iframe.style.display = 'none';
+		iframe.style.width = '0';
+		iframe.style.height = '0';
+		iframe.style.border = 'none';
+		document.body.appendChild(iframe);
+
+		// Create a hidden form and submit it to the iframe to bypass CORS
+		const form = document.createElement('form');
+		form.action = 'https://whalenjared.substack.com/api/v1/free?nojs=true';
+		form.method = 'post';
+		form.target = 'substack-submit-iframe';
+		form.style.display = 'none';
+
+		const emailInput = document.createElement('input');
+		emailInput.type = 'email';
+		emailInput.name = 'email';
+		emailInput.value = email;
+		form.appendChild(emailInput);
+
+		document.body.appendChild(form);
+		form.submit();
+		
+		// Clean up after a short delay to allow the submission to complete
+		setTimeout(() => {
+			document.body.removeChild(form);
+			document.body.removeChild(iframe);
+		}, 1000);
+	}
+
 	async function handleSubmit(event) {
 		event.preventDefault();
 
@@ -107,6 +140,10 @@
 		try {
 			submitting = true;
 
+			// Submit to Substack using form submission (bypasses CORS)
+			submitToSubstack(email);
+
+			// Submit to Google Apps Script (existing logic)
 			const res = await fetch(WEB_APP_URL, {
 				method: 'POST',
 				headers: { 'Content-Type': 'text/plain' },
