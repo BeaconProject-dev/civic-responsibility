@@ -89,7 +89,7 @@
 
 		// Create a hidden form and submit it to the iframe to bypass CORS
 		const form = document.createElement('form');
-		form.action = 'https://whalenjared.substack.com/api/v1/free?nojs=true';
+		form.action = 'https://thebeaconproject.substack.com/api/v1/free?nojs=true';
 		form.method = 'post';
 		form.target = 'substack-submit-iframe';
 		form.style.display = 'none';
