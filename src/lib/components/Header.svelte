@@ -98,17 +98,6 @@
 				</a>
 			{/if}
 		{:else}
-			{#if !$page.url.pathname.includes('/dashboard')}
-				<a href={base + '/dashboard'} class="nav-button dashboard-button">
-					{#if $isMobile}
-						<span>Interactive Dashboard</span>
-					{:else}
-						<ChartBar size={16} />
-						<span class="full-text">View the data dashboard</span>
-						<span class="short-text">Explore data</span>
-					{/if}
-				</a>
-			{/if}
 			{#if !$page.url.pathname.includes('/quiz')}
 				<a href={base + '/quiz'} class="nav-button quiz-button">
 					{#if $isMobile}
@@ -117,6 +106,18 @@
 						<UserPen size={16} />
 						<span class="full-text">What's your Civic Profile? Take our interactive quiz.</span>
 						<span class="short-text">Take the quiz</span>
+					{/if}
+				</a>
+			{/if}
+
+			{#if !$page.url.pathname.includes('/dashboard')}
+				<a href={base + '/dashboard'} class="nav-button dashboard-button">
+					{#if $isMobile}
+						<span>Interactive Dashboard</span>
+					{:else}
+						<ChartBar size={16} />
+						<span class="full-text">View the data dashboard</span>
+						<span class="short-text">Explore data</span>
 					{/if}
 				</a>
 			{/if}
