@@ -67,7 +67,7 @@
 </script>
 
 <div class="step-3" bind:this={stepElement}>
-	<div class="background-container" bind:this={backgroundElement}>
+	<div class="background-container" aria-hidden="true" bind:this={backgroundElement}>
 		<div class="background-image"></div>
 		<div class="color-overlay"></div>
 	</div>

@@ -82,7 +82,7 @@
 		</div>
 	</div>
 
-	<div class="definition-content" bind:this={definitionElement} style:min-height="{$isMobile ? 'auto' : `${maxHeight}px`}">
+	<div class="definition-content" aria-hidden="true" bind:this={definitionElement} style:min-height="{$isMobile ? 'auto' : `${maxHeight}px`}">
 		<div class="dictionary-entry">
 			<div class="term">
 				<span class="term-text">civic responsibilities</span>

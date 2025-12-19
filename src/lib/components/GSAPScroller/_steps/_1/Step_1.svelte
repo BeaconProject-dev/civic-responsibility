@@ -78,6 +78,7 @@
 
 	<div
 		class="art-content"
+		aria-hidden="true"
 		bind:this={artElement}
 		bind:clientHeight={artHeight}
 		bind:clientWidth={artWidth}

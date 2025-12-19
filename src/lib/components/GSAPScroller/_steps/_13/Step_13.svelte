@@ -161,7 +161,7 @@
 			</div>
 		</div>
 
-		<div class="big-number-container">
+		<div class="big-number-container" aria-hidden="true">
 			<div class="big-number">{animatedNumber}%</div>
 			<div class="agree-text">agree</div>
 		</div>

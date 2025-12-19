@@ -17,28 +17,36 @@
 	});
 </script>
 
-<section class="hero-section" role="banner" aria-label="Hero section">
-	<div class="hero-video-bg" role="presentation" aria-hidden="true">
-		<video autoplay muted loop playsinline {poster} aria-label="Background video">
+<section class="hero-section">
+	<div class="hero-video-bg" role="presentation">
+		<video
+			autoplay
+			muted
+			loop
+			playsinline
+			{poster}
+			aria-label="A video showing people doing acts of civic responsibility, such as picking up trash, serving in the military, voting, working in healthcare, teaching, and volunteering at a food pantry."
+		>
 			<source src={base + videoSrc} type="video/mp4" />
 			<!-- Fallback for browsers that don't support video -->
 			<p>Your browser doesn't support HTML5 video.</p>
 		</video>
-		<div class="hero-video-overlay"></div>
-		<div class="hero-video-blur"></div>
+		<div class="hero-video-overlay" aria-hidden="true"></div>
+		<div class="hero-video-blur" aria-hidden="true"></div>
 	</div>
 	<div class="hero-content">
 		<!-- <h1 class="hero-title">{@html heroText}</h1> -->
 		{#if isMounted}
 			<div class="hero-title">
-				<h1 transition:slide={{ axis: 'y', duration: 1000, delay: 150 }}>What do we</h1>
-				<h1 transition:slide={{ axis: 'y', duration: 1000, delay: 300 }}>owe each other</h1>
-				<h1 transition:slide={{ axis: 'y', duration: 1000, delay: 450 }}>as Americans?</h1>
+				<h1 class="sr-only">What do we owe each other as Americans?</h1>
+				<h1 aria-hidden="true" transition:slide={{ axis: 'y', duration: 1000, delay: 150 }}>What do we</h1>
+				<h1 aria-hidden="true" transition:slide={{ axis: 'y', duration: 1000, delay: 300 }}>owe each other</h1>
+				<h1 aria-hidden="true" transition:slide={{ axis: 'y', duration: 1000, delay: 450 }}>as Americans?</h1>
 			</div>
 		{/if}
 	</div>
 	{#if isMounted}
-		<div class="scroll-down" in:fade={{ duration: 1000, delay: 1000 }}>
+		<div class="scroll-down" in:fade={{ duration: 1000, delay: 1000 }} aria-hidden="true">
 			<span>Scroll down</span>
 		</div>
 	{/if}
