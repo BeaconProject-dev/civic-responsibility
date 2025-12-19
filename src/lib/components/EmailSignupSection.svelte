@@ -102,7 +102,7 @@
 
 		document.body.appendChild(form);
 		form.submit();
-		
+
 		// Clean up after a short delay to allow the submission to complete
 		setTimeout(() => {
 			document.body.removeChild(form);
@@ -174,11 +174,13 @@
 
 <section id="email-signup" class="email-signup-section" bind:this={sectionElement}>
 	<div class="email-signup-container" bind:this={contentElement}>
-		<h2>Learn more about our effort to rethink responsibility in America.</h2>
+		<h2>
+			Did you know that a group of people are committing to rethink responsibility in America?
+		</h2>
 		<p>
 			We are on a mission to build a country that recognizes each American’s right and
-			responsibility to improve their own and others’ lives. Enter your email below to
-			subscribe to our newsletter and receive monthly updates on our work.
+			responsibility to improve their own and others’ lives. Does this sound like you? Share your
+			email below for more information.
 		</p>
 
 		<form onsubmit={handleSubmit} class="signup-form">
@@ -228,7 +230,7 @@
 	.email-signup-section {
 		z-index: 1;
 		width: 100%;
-		padding: 5rem 2rem;
+		padding: 15vh 4rem;
 		background: linear-gradient(
 			135deg,
 			var(--color-theme-blue) 0%,
@@ -260,7 +262,7 @@
 			h2 {
 				font-size: 2.5rem;
 				font-weight: 600;
-				margin: 0 0 3rem 0;
+				margin: 0 0 1rem 0;
 				line-height: 1.3;
 				color: var(--color-theme-light);
 				text-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
@@ -396,7 +398,7 @@
 	// Responsive design
 	@include mq('mobile', 'max') {
 		.email-signup-section {
-			padding: 2rem 1.5rem;
+			padding: 5rem 1.5rem;
 
 			.email-signup-container {
 				h2 {

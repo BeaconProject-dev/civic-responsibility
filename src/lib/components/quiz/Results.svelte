@@ -45,7 +45,15 @@
 	</div>
 
 	<div class="results-table">
+
 		<div class="results-row summary">
+			<p>
+				You selected <span class="highlight">{submittedUserYesCount}</span>
+				responsibilities. The average American selected
+				<span class="highlight">20</span>
+				responsibilities.
+			</p>
+			<br/>
 			<p>
 				{@html descriptions[civicProfile]}
 			</p>
@@ -201,7 +209,7 @@
 
 		&.summary {
 			text-align: center;
-			margin: 1.5rem 0;
+			margin: 1.5rem;
 
 			p {
 				font-size: 1.2rem;

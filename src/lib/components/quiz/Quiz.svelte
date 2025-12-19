@@ -95,9 +95,10 @@
 				{/if}
 
 				{#if !isLoading && !error}
-					<div class="quiz-header">
-						<h2>Your civic profile</h2>
-						<!-- <p>
+					{#if !results}
+						<div class="quiz-header">
+							<h2>What is your civic profile?</h2>
+							<!-- <p>
 						Take the quiz below to find out. For each behavior, indicate whether or not you consider it
 						a <span class="definition-text"
 							>civic responsibility
@@ -113,14 +114,16 @@
 						>
 					</div> -->
 
-						<p>
-							Take the quiz below to find out. For each behavior, indicate whether or not <b>you</b>
-							yourself consider it a civic responsibility—an action you believe people ought to perform
-							as part of our national community. You may find some of these questions difficult to answer.
-							That’s OK. In those cases, pick the answer that comes closest to your view.
-						</p>
-					</div>
-
+							<p>
+								Take the quiz below to find out. For each behavior, indicate whether or not <b
+									>you</b
+								>
+								yourself consider it a civic responsibility—an action you believe people ought to perform
+								as part of our national community. You may find some of these questions difficult to
+								answer. That’s OK. In those cases, pick the answer that comes closest to your view.
+							</p>
+						</div>
+					{/if}
 					<Form bind:responses {results} />
 				{/if}
 			{/if}
@@ -160,7 +163,7 @@
 
 	.quiz-content {
 		width: 100%;
-		max-width: 700px;
+		max-width: 750px;
 		margin: 0 auto;
 		display: flex;
 		flex-direction: column;

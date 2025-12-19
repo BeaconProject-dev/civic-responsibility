@@ -91,15 +91,12 @@
 	</div>
 	<div class="explore-overlay"></div>
 	<div class="explore-content">
-		<!-- <iframe src="https://thebeaconproject.substack.com/embed" width="100%" height="150" scrolling="no"></iframe> -->
 
 		<div class="explore-title" bind:this={textElement}>
 			<h2>Explore further...</h2>
 		</div>
 
 		<div class="explore-columns">
-			
-
 			<div class="explore-column quiz-column">
 				<div class="column-content">
 					<h3>Interactive Quiz</h3>
@@ -133,9 +130,9 @@
 		</div>
 
 		<!-- <div class="explore-footer">
-			<button data-button="report" class="report-button">
-				Read the full report
-			</button>
+			<a href="https://osf.io/preprints/psyarxiv/syhq7_v1" target="_blank" class="report-button">
+				Read the scientific article
+			</a>
 		</div> -->
 	</div>
 </div>
@@ -151,7 +148,6 @@
 		align-items: center;
 		position: relative;
 		isolation: isolate;
-
 	}
 
 	.explore-background {
@@ -278,7 +274,8 @@
 		margin-top: 2rem;
 	}
 
-	button {
+	button,
+	.report-button {
 		padding: 1rem 2rem;
 		border-radius: 12px;
 		border: none;
@@ -316,27 +313,27 @@
 				box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
 			}
 		}
+	}
 
-		&.report-button {
-			@include glass-effect(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.6));
-			color: var(--color-theme-light);
-			border-width: 2px;
-			padding: 1rem 2.5rem;
-			font-size: 1.1rem;
-			min-width: 200px;
+	.report-button {
+		@include glass-effect(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.6));
+		color: var(--color-theme-light);
+		border-width: 2px;
+		padding: 1rem 2.5rem;
+		font-size: 1.1rem;
+		min-width: 200px;
 
-			&:hover {
-				background: var(--color-theme-light);
-				color: var(--color-theme-dark);
-				border-color: var(--color-theme-light);
-			}
+		&:hover {
+			background: var(--color-theme-light);
+			color: var(--color-theme-dark);
+			border-color: var(--color-theme-light);
 		}
 	}
 
 	// Responsive design
 	@include mq('mobile', 'max') {
 		.explore-section {
-			padding: 10vh 1rem;
+			padding: 5rem 1.5rem;
 			min-height: auto;
 		}
 

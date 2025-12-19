@@ -13,7 +13,7 @@
 </script>
 
 {#if !$userResponse.submitted}
-	<span class="instructions drag" transition:fade
+	<span class="instructions drag red" transition:fade
 		>Drag the dot to your guess.<button onclick={submit}>Submit</button></span
 	>
 {/if}

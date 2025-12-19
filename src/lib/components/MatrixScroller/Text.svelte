@@ -173,6 +173,10 @@
 				color: $color-theme-red;
 				// font-size: 2rem;
 			}
+
+			&.red {
+				color: $color-theme-red;
+			}
 		}
 	}
 </style>
