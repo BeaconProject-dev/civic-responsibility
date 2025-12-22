@@ -129,11 +129,11 @@
 			</div>
 		</div>
 
-		<!-- <div class="explore-footer">
+		<div class="explore-footer">
 			<a href="https://osf.io/preprints/psyarxiv/syhq7_v1" target="_blank" class="report-button">
 				Read the scientific article
 			</a>
-		</div> -->
+		</div>
 	</div>
 </div>
 
