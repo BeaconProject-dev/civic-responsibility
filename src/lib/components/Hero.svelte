@@ -35,10 +35,9 @@
 		<div class="hero-video-blur" aria-hidden="true"></div>
 	</div>
 	<div class="hero-content">
-		<!-- <h1 class="hero-title">{@html heroText}</h1> -->
+		<h1 class="sr-only">What do we owe each other as Americans?</h1>
 		{#if isMounted}
 			<div class="hero-title">
-				<h1 class="sr-only">What do we owe each other as Americans?</h1>
 				<h1 aria-hidden="true" transition:slide={{ axis: 'y', duration: 1000, delay: 150 }}>What do we</h1>
 				<h1 aria-hidden="true" transition:slide={{ axis: 'y', duration: 1000, delay: 300 }}>owe each other</h1>
 				<h1 aria-hidden="true" transition:slide={{ axis: 'y', duration: 1000, delay: 450 }}>as Americans?</h1>
@@ -67,7 +66,6 @@
 
 			// Mobile responsive adjustments
 			@include mq('mobile', 'max') {
-				height: 100vh;
 				min-height: 600px; // Ensure minimum height on mobile
 			}
 
