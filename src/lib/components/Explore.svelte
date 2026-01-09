@@ -91,7 +91,6 @@
 	</div>
 	<div class="explore-overlay"></div>
 	<div class="explore-content">
-
 		<div class="explore-title" bind:this={textElement}>
 			<h2>Explore further...</h2>
 		</div>
@@ -99,8 +98,10 @@
 		<div class="explore-columns">
 			<div class="explore-column quiz-column">
 				<div class="column-content">
-					<h3>Interactive Quiz</h3>
-					<p>How do your beliefs compare to other Americans'?</p>
+					<div>
+						<h3>Interactive Quiz</h3>
+						<p>How do your beliefs compare to other Americans'?</p>
+					</div>
 					<button
 						data-button="quiz"
 						bind:this={quizButton}
@@ -113,11 +114,13 @@
 
 			<div class="explore-column dashboard-column">
 				<div class="column-content">
-					<h3>Interactive Dashboard</h3>
-					<p>
-						Learn how Americans' beliefs differ by political affiliation, gender, location, and
-						more.
-					</p>
+					<div>
+						<h3>Interactive Dashboard</h3>
+						<p>
+							Learn how Americans' beliefs differ by political affiliation, gender, location, and
+							more.
+						</p>
+					</div>
 					<button
 						data-button="explore"
 						bind:this={exploreButton}
@@ -246,9 +249,17 @@
 			display: flex;
 			flex-direction: column;
 			align-items: center;
+			justify-content: space-between;
+			height: 100%;
 			gap: 1.5rem;
 			color: var(--color-theme-light);
 
+			div {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 1.5rem;
+			}
 			h3 {
 				font-size: 1.8rem;
 				font-weight: 600;
